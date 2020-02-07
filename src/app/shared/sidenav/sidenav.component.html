@@ -1,0 +1,29 @@
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <div class="logo" routerLink="/">
+      <!-- <img src="assets/img/logo.png" class="img-fluid" /> -->
+    </div>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li>
+        <a
+          nz-menu-item
+          routerLinkActive="active ant-menu-item-selected"
+          routerLink="/dashboard"
+        >
+          <i nz-icon nzType="appstore" nzTheme="outline"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a
+          nz-menu-item
+          routerLinkActive="active ant-menu-item-selected"
+          routerLink="/listings"
+        >
+          <i nz-icon nzType="sliders" nzTheme="outline"></i>
+          <span>Listings</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>

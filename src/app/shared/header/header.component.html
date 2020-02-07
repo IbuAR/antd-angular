@@ -1,0 +1,163 @@
+<nz-header class="ant-header">
+  <ul
+    nz-menu
+    nzMode="horizontal"
+    class="d-flex align-items-center float-left header-left border-bottom-0"
+  >
+    <li nz-menu-item class="pl-0">
+      <a routerLink="/" class="header-logo">
+        <img src="../../../assets/img/fav.png" />
+      </a>
+    </li>
+    <li nz-menu-item>
+      <div class="head-icon">
+        <i
+          class="trigger"
+          nz-icon
+          [nzType]="visible ? 'menu-unfold' : 'menu-fold'"
+          (click)="visible = !visible"
+        ></i>
+      </div>
+    </li>
+  </ul>
+  <ul
+    nz-menu
+    nzMode="horizontal"
+    class="bg-transparent d-flex align-items-center float-right header-right border-bottom-0"
+  >
+    <li nz-menu-item>
+      <!-- <div
+        nz-dropdown
+        [(nzVisible)]="visible2"
+        (click)="open()"
+        [nzClickHide]="false"
+        nzTrigger="click"
+        [nzDropdownMenu]="menu"
+        nzPlacement="bottomRight"
+      >
+        <nz-badge [nzCount]="notificationsCount">
+          <a class="head-icon">
+            <i nz-icon nzType="bell" nzTheme="outline"></i>
+          </a>
+        </nz-badge>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <div class="notification-dropdown">
+            <nz-list
+              [nzHeader]="Header"
+              [nzFooter]="Footer"
+              [nzBordered]="false"
+              class="bg-white"
+            >
+              <ng-template #Header>
+                <div>
+                  <span class="h6 mb-0 font-weight-normal"
+                    >Notifications<span *ngIf="notificationsCount"
+                      >&nbsp;({{ notificationsCount }})</span
+                    >
+                  </span>
+                  <a
+                    class="float-right cursor-pointer accent"
+                    *ngIf="notifications?.length > 0"
+                    (click)="Clear()"
+                    >Mark all as read</a
+                  >
+                </div>
+              </ng-template>
+              <div class="notification-list-items">
+                <ng-container
+                  *ngFor="let Ndata of notifications; let i = index"
+                >
+                  <nz-list-item
+                    (click)="visible2 = false"
+                    class="justify-content-between align-items-start"
+                    routerLink="/notification"
+                  >
+                    <div class="d-flex">
+                      <span class="ant-typography">
+                        <div class="notification-avatar">
+                          <nz-avatar nzIcon="user-add"></nz-avatar>
+                        </div>
+                      </span>
+                      <div>
+                        <div class="notification-title">
+                          {{ Ndata.title }}&nbsp;&nbsp;
+                          <nz-badge
+                            *ngIf="i < notificationsCount"
+                            nzStatus="success"
+                          >
+                          </nz-badge>
+                        </div>
+                        <div class="notification-content">
+                          {{ Ndata.message }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notification-time ml-1">
+                      <span>{{ Ndata.createdAt | dateAgo }}</span>
+                    </div>
+                  </nz-list-item>
+                </ng-container>
+              </div>
+              <div
+                *ngIf="notifications?.length == 0"
+                class="justify-content-center align-items-center"
+              >
+                <div class="notification-empty-state">
+                  <div class="icon-bg">
+                    <i nz-icon nzType="bell" nzTheme="outline"></i>
+                  </div>
+                  <div class="empty-state-content">No new notifications.</div>
+                </div>
+              </div>
+              <ng-template #Footer>
+                <a
+                  (click)="visible2 = false"
+                  class="d-block w-100"
+                  routerLink="/notification"
+                >
+                  View all
+                </a>
+              </ng-template>
+            </nz-list>
+          </div>
+        </nz-dropdown-menu>
+      </div> -->
+    </li>
+    <li nz-menu-item>
+      <div
+        nz-dropdown
+        nzTrigger="click"
+        [nzDropdownMenu]="profile"
+        nzPlacement="bottomRight"
+        class="d-flex align-items-center header-index-name"
+      >
+        <nz-avatar nzText="{{ userName | slice: 0:1 }}" class="text-uppercase">
+        </nz-avatar>
+        <span class="ml-2 mr-1 text-capitalize">{{ userName }}</span>
+        <i nz-icon nzType="down"></i>
+      </div>
+      <nz-dropdown-menu #profile="nzDropdownMenu">
+        <ul nz-menu class="profile-dropdown">
+          <li nz-menu-item routerLink="/settings">
+            <i nz-icon nzType="setting" nzTheme="outline"></i>
+            <span>Settings</span>
+          </li>
+          <li nz-menu-divider></li>
+          <li nz-menu-item (click)="logout()">
+            <i nz-icon nzType="logout" nzTheme="outline"></i>
+            <span>Logout</span>
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </li>
+  </ul>
+</nz-header>
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  [nzPlacement]="placement"
+  (click)="visible = !visible"
+  (nzOnClose)="close()"
+>
+  <app-sidenav></app-sidenav>
+</nz-drawer>

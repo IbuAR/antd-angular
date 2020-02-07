@@ -1,0 +1,239 @@
+[nz-menu] {
+    line-height: 64px;
+    min-height: 64px;
+}
+
+.head-icon {
+    i {
+        margin-right: 0px;
+        font-size: 18px;
+    }
+}
+
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover {
+    outline: none;
+}
+
+.profile-dropdown {
+    li {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+.ul {
+    border: 0;
+    line-height: 64px;
+}
+
+.header-left {
+    display: none !important;
+
+    li {
+        padding: 0px 10px;
+    }
+
+    @media (max-width:992px) {
+        display: inline-block !important;
+    }
+}
+
+
+.header-right {
+    li {
+        line-height: 64px;
+        min-height: 64px;
+        display: flex;
+
+        &:last-child {
+            &.ant-menu-item {
+                padding-right: 0px;
+                padding-left: 10px;
+
+                @media(max-width:575px) {
+                    padding-left: 5px;
+                }
+            }
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.ant-menu-item {
+    border-bottom: 0px;
+    top: 0;
+    margin-top: 0px;
+    padding: 0px 15px;
+
+    &:hover {
+        border: 0px;
+        color: inherit;
+    }
+}
+
+.ant-menu-item-selected {
+    border: 0px;
+    color: inherit;
+}
+
+.ant-layout-header {
+    display: inline-block;
+    width: 100%;
+    box-shadow: 0 1px 0px 0px #efefef;
+    z-index: 1;
+}
+
+/deep/.ant-dropdown.nz-dropdown {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    max-width: 400px;
+}
+
+/deep/.ant-list {
+    border-radius: 4px;
+}
+
+/deep/.ant-list-header {
+    border-radius: 4px 4px 0px 0px;
+}
+
+/deep/.ant-list-footer {
+    border-radius: 0px 0px 4px 4px;
+    text-align: center;
+}
+
+
+/deep/.ant-list-header,
+/deep/.ant-list-footer,
+/deep/.ant-list-item {
+    padding: 12px 18px;
+}
+
+.notification-dropdown {
+    min-width: 400px;
+
+    @media (max-width:575px) {
+        min-width: 300px;
+    }
+}
+
+.notification-list-items {
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+}
+
+.notification-empty-state {
+    text-align: center;
+    padding: 12px 18px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .icon-bg {
+        background: #e9e9ee;
+        width: 55px;
+        height: 55px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 8px auto;
+    }
+
+    i {
+        font-size: 28px;
+        color: #a2a2a2;
+    }
+}
+
+/deep/.ant-list-split .ant-list-item {
+    border-bottom: 1px solid #efefef;
+    cursor: pointer;
+
+    &:last-child {
+        border-bottom: 1px solid #efefef;
+    }
+
+    &:hover {
+        background: #eeeeee;
+    }
+
+}
+
+.notification-avatar {
+    position: relative;
+
+    .ant-avatar {
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+}
+
+// Notification
+.notification-content {
+    font-size: 12px;
+}
+
+.notification-content,
+.notification-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.notification-time {
+    span {
+        border: 1px solid #ddd;
+        padding: 4px 6px;
+        border-radius: 4px;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 11.5px;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.header-logo {
+    img {
+        height: 45px;
+    }
+}
+
+@media (max-width:575px) {
+    .header-index-name {
+
+        span,
+        i {
+            display: none;
+        }
+    }
+
+    /deep/.cdk-overlay-connected-position-bounding-box {
+        right: 0 !important;
+        width: 100% !important;
+        padding: 0px 10px !important;
+    }
+}

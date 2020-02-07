@@ -1,1 +1,187 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import (css) "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./assets/font/Roboto-Thin.ttf);
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./assets/font/Roboto-Light.ttf);
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./assets/font/Roboto-Regular.ttf);
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./assets/font/Roboto-Medium.ttf);
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./assets/font/Roboto-Bold.ttf);
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./assets/font/Roboto-Black.ttf);
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font: "Roboto";
+@primary-color: #3e64ff;
+@secondary-color: #fe5886;
+@text-color: #222831;
+@text-muted: #393e46;
+@bg-white: #ffffff;
+@text-white: #ffffff;
+
+body {
+  font-family: @font, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  user-select: none;
+  font-weight: 400;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+.buy,
+.completed,
+.success {
+  color: #52c41a;
+}
+
+.accent {
+  color: @primary-color !important;
+}
+
+.sell,
+.failed {
+  color: #f5222d;
+}
+
+// Layout
+.ant-layout {
+  background: #f5f6f7;
+}
+
+.empty-state-content {
+  color: fade(@text-color, 65%);
+}
+
+// Button
+.ant-btn-danger {
+  background: @secondary-color;
+
+  &:hover,
+  &:focus {
+    background: fade(@secondary-color, 90%);
+    border-color: fade(@secondary-color, 90%);
+  }
+}
+
+.pending {
+  color: #ecad00;
+}
+
+ul {
+  color: fade(@text-color, 65%);
+}
+
+p {
+  color: fade(@text-color, 65%);
+}
+
+// Scroll
+
+.ant-scroll-number-only {
+  p {
+    color: @text-white;
+  }
+}
+
+// Selection
+::selection {
+  background: fade(@primary-color, 100%);
+}
+
+::-moz-selection {
+  background: fade(@primary-color, 100%);
+}
+
+.ant-progress-circle .ant-progress-text {
+  color: fade(@text-color, 65%);
+}
+
+// Sidenav
+.ant-layout-sider {
+  background: @bg-white;
+}
+
+.ant-menu-item {
+  color: fade(@text-color, 65%);
+
+  &::after {
+    background-color: @primary-color;
+  }
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background: fade(@primary-color, 0%);
+  color: @primary-color;
+}
+
+// Header
+.ant-layout-header {
+  background: @bg-white;
+}
+
+.ant-avatar {
+  background: @primary-color;
+}
+
+// Table
+.trade-time {
+  color: fade(@text-color, 45%);
+}
+
+.ant-table-tbody
+  > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
+  > td {
+  background: initial;
+}
+
+.ant-select-dropdown-menu-item-selected {
+  color: fade(@text-color, 85%);
+}
+
+// Notification
+.notification-content {
+  color: fade(@text-color, 45%);
+}
+
+.ant-list-header,
+.ant-list-footer,
+.ant-list-item {
+  color: fade(@text-color, 85%);
+}
+
+.pointer {
+  cursor: pointer;
+}
