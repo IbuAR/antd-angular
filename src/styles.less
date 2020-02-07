@@ -46,12 +46,13 @@
 }
 
 @font: "Roboto";
-@primary-color: #3e64ff;
-@secondary-color: #fe5886;
+@primary-color: #3d5af1;
+@secondary-color: #22d1ee;
 @text-color: #222831;
 @text-muted: #393e46;
 @bg-white: #ffffff;
 @text-white: #ffffff;
+@heading-color: #3d5af1;
 
 body {
   font-family: @font, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -171,6 +172,13 @@ p {
   color: fade(@text-color, 85%);
 }
 
+.qrcode-container {
+  img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
 // Notification
 .notification-content {
   color: fade(@text-color, 45%);
@@ -184,4 +192,22 @@ p {
 
 .pointer {
   cursor: pointer;
+}
+
+.layout {
+  min-height: 100vh;
+}
+
+.logo {
+  width: 100px;
+}
+
+#auth .ant-input {
+  padding-left: 30px !important;
+  height: 40px;
+  line-height: 40px;
+}
+
+.cat-btn {
+  height: 40px;
 }

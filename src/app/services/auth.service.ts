@@ -13,7 +13,7 @@ export class AuthService {
     private router: Router) { }
 
   getToken() {
-    return localStorage.getItem('isLoggedIn');
+    return localStorage.getItem('user');
   }
 
   LoggedIn() {
@@ -26,4 +26,11 @@ export class AuthService {
     this.router.navigate(['/auth/login']);
   }
 
+  Login(val) {
+    return this.getpost.postMethod(Constants.url + Constants.login, val)
+  }
+
+  SignUp(val) {
+    return this.getpost.postMethod(Constants.url + Constants.login, val)
+  }
 }

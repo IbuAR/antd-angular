@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
+import { NzMessageService } from 'ng-zorro-antd';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,41 +11,31 @@ import { Observable, Observer } from 'rxjs';
   styleUrls: ['./signup.component.less']
 })
 export class SignupComponent {
+  passwordVisibleConfirmNew = false;
+  passwordVisibleConfirm = false;
   validateForm: FormGroup;
+  loading = false;
+  success = false;
+  refId = null;
+  constructor(private fb: FormBuilder,
+    private authService: AuthService,
+    private message: NzMessageService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
-  submitForm(value: any): void {
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsDirty();
-      this.validateForm.controls[key].updateValueAndValidity();
-    }
-    console.log(value);
-  }
+  ngOnInit(): void {
+    if (this.route.snapshot.paramMap.get("id"))
+      this.refId = this.route.snapshot.paramMap.get("id");
 
-  resetForm(e: MouseEvent): void {
-    e.preventDefault();
-    this.validateForm.reset();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsPristine();
-      this.validateForm.controls[key].updateValueAndValidity();
-    }
-  }
-
-  validateConfirmPassword(): void {
-    setTimeout(() => this.validateForm.controls.confirm.updateValueAndValidity());
-  }
-
-  userNameAsyncValidator = (control: FormControl) =>
-    new Observable((observer: Observer<ValidationErrors | null>) => {
-      setTimeout(() => {
-        if (control.value === 'JasonWood') {
-          // you have to return `{error: true}` to mark it as an error event
-          observer.next({ error: true, duplicated: true });
-        } else {
-          observer.next(null);
-        }
-        observer.complete();
-      }, 1000);
+    this.validateForm = this.fb.group({
+      fullName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^([a-zA-z\s]{3,20})$')]],
+      emailAddress: [null, [Validators.required, Validators.email]],
+      phoneNumber: [null, [Validators.required, Validators.pattern('([0-9]{8,12})')]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\/])(?=.{8,})/)]],
+      confirmpassword: [null, [Validators.required, this.confirmValidator]],
+      agree: [false, Validators.requiredTrue]
     });
+  }
 
   confirmValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -53,13 +46,41 @@ export class SignupComponent {
     return {};
   };
 
-  constructor(private fb: FormBuilder) {
-    this.validateForm = this.fb.group({
-      userName: ['', [Validators.required], [this.userNameAsyncValidator]],
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required]],
-      confirm: ['', [this.confirmValidator]],
-      comment: ['', [Validators.required]]
-    });
+  confirmValidator2 = () => {
+    if (this.validateForm.controls.confirmpassword.value != '' && this.validateForm.controls.confirmpassword.value !== this.validateForm.controls.password.value) {
+      this.validateForm.controls.confirmpassword.setErrors({ confirm: true, error: true });
+      return;
+    }
+    this.validateForm.controls.confirmpassword.setErrors(null);
+  };
+
+
+  SignUp() {
+
+    if (this.validateForm.status == 'VALID' && this.validateForm.touched) {
+      const msgId = this.message.loading('Creating account...').messageId;
+
+
+      const UserParams: any = {
+        userName: this.validateForm.value.fullName,
+        password: this.validateForm.value.password,
+        email: this.validateForm.value.emailAddress,
+        mobileNum: this.validateForm.value.phoneNumber,
+      }
+      this.loading = true;
+      this.authService.SignUp(UserParams).subscribe(data => {
+        this.message.remove(msgId);
+        if (data['success']) {
+          this.message.success(`Account created successfully !`);
+          this.loading = false;
+          this.validateForm.reset();
+          this.success = true;
+          // this.router.navigate(['/auth/login']);
+        } else {
+          this.loading = false;
+          this.message.error(data['message']);
+        }
+      });
+    }
   }
 }

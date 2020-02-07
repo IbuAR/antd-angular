@@ -35,5 +35,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     }
 
+    open(): void {
+        let temp = this.notifications;
+        this.notifications = temp;
+        this.visible2 = true;
+    }
+
+    close(): void {
+        this.visible2 = false;
+    }
+
 
 }

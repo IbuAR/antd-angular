@@ -7,13 +7,12 @@ import { NzMessageService } from "ng-zorro-antd";
     styleUrls: ["./sidenav.component.less"]
 })
 export class SidenavComponent implements OnInit {
+    isCollapsed = false;
+
     constructor(
         private message: NzMessageService
     ) { }
-    isCollapsed = false;
+
     ngOnInit() { }
-    logOut() {
-        this.message.success("Logged out successfully!");
-        // this.authService.logOut();
-    }
+
 }
