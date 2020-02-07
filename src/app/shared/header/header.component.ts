@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
     userName: any = localStorage.getItem("userName");
-    visible2 = false;
+    visible = false;
     notifySubs: Subscription;
     notifySubsData: Subscription;
     notifications = [];
@@ -38,11 +38,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     open(): void {
         let temp = this.notifications;
         this.notifications = temp;
-        this.visible2 = true;
+        this.visible = true;
     }
 
     close(): void {
-        this.visible2 = false;
+        this.visible = false;
     }
 
 

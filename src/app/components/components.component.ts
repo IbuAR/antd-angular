@@ -6,19 +6,12 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
   styleUrls: ["./components.component.less"],
 })
 export class ComponentsComponent implements OnInit {
+  isCollapsed = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  isCollapsed = false;
-  visible = false;
-  placement = "left";
-  open(): void {
-    this.visible = true;
-  }
 
-  close(): void {
-    this.visible = false;
-  }
 }
