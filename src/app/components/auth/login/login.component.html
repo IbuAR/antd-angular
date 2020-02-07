@@ -1,6 +1,7 @@
 <section id="auth" class="vh-100">
   <div class="container h-100">
     <div class="row h-100 d-flex justify-content-center align-items-center">
+      <div class="col-md-6"></div>
       <div class="col-md-6">
         <h2 nz-title>Log In</h2>
         <form nz-form [formGroup]="validateForm" (ngSubmit)="login()">
@@ -73,9 +74,7 @@
               <label nz-checkbox formControlName="remember">
                 <span>Remember me</span>
               </label>
-              <a class="float-right" routerLink="/auth/signup"
-                >Need Account ?
-              </a>
+              <a class="float-right" routerLink="/auth/signup">Need Account?</a>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
